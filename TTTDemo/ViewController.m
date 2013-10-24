@@ -26,4 +26,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)gameButtonPressed:(id)sender {
+    UIButton* theButton = (UIButton *)sender;
+    [[theButton titleLabel] setText:@"X"];
+}
+
 @end

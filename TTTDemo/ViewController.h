@@ -10,4 +10,6 @@
 
 @interface ViewController : UIViewController
 
+- (IBAction)gameButtonPressed:(id)sender;
+
 @end

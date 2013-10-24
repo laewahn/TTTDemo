@@ -45,6 +45,24 @@
     }
 }
 
+-(void)testAllButtonsCallTheViewControllerOnTouchUp
+{
+    for (UIButton* aButton in [self buttonsInView:[testViewController view]]) {
+        XCTAssertTrue([[aButton actionsForTarget:testViewController forControlEvent:UIControlEventTouchUpInside] containsObject:@"gameButtonPressed:"], @"The button should be connected to the view controllers gameButtonPressed: method.");
+    }
+}
+
+
+# pragma mark Interaction tests
+
+-(void)testTheFirstButtonPressedShowsAnX
+{
+    NSArray* buttons = [self buttonsInView:[testViewController view]];
+    UIButton* anyButton = [buttons firstObject];
+    
+    [testViewController gameButtonPressed:anyButton];
+    XCTAssertEqualObjects([[anyButton titleLabel] text], @"X", @"The button should now show an X.");
+}
 
 # pragma mark Helpers
 
