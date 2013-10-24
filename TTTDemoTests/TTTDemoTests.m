@@ -41,7 +41,7 @@
 -(void)testAllNineButtonsAreEmpty
 {
     for (UIButton* aButton in [self buttonsInView:[testViewController view]]) {
-        XCTAssertNil([[aButton titleLabel] text], @"Button at label should be empty.");
+        XCTAssertEqualObjects([[aButton titleLabel] text], @"-", @"Button label should show -.");
     }
 }
 
