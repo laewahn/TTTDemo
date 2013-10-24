@@ -34,25 +34,34 @@
 
 -(void)testViewControllerHasNineButtons
 {
-    NSArray* subviews = [testViewController.view subviews];
-    NSIndexSet* buttonSubviewIndexes = [subviews indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-        return [obj isMemberOfClass:[UIButton class]];
-    }];
-    
+    NSIndexSet* buttonSubviewIndexes = [self indexesOfButtonsInView:[testViewController view]];
     XCTAssertEqual([buttonSubviewIndexes count], (NSUInteger) 9, @"There should be 9 buttons.");
 }
 
 -(void)testAllNineButtonsAreEmpty
 {
-    NSArray* subviews = [testViewController.view subviews];
+    for (UIButton* aButton in [self buttonsInView:[testViewController view]]) {
+        XCTAssertNil([[aButton titleLabel] text], @"Button at label should be empty.");
+    }
+}
+
+
+# pragma mark Helpers
+
+-(NSArray* )buttonsInView:(UIView *)aView
+{
+    NSArray* subviews = [aView subviews];
+    return [subviews objectsAtIndexes:[self indexesOfButtonsInView:aView]];
+}
+
+-(NSIndexSet *)indexesOfButtonsInView:(UIView *)aView
+{
+    NSArray* subviews = [aView subviews];
     NSIndexSet* buttonSubviewIndexes = [subviews indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
         return [obj isMemberOfClass:[UIButton class]];
     }];
     
-    [buttonSubviewIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        UIButton* buttonAtIdx = [subviews objectAtIndex:idx];
-        XCTAssertNil([[buttonAtIdx titleLabel] text], @"Button at index %d should be empty.", idx);
-    }];
+    return buttonSubviewIndexes;
 }
 
 @end
