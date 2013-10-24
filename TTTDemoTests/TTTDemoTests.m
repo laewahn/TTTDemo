@@ -8,27 +8,51 @@
 
 #import <XCTest/XCTest.h>
 
-@interface TTTDemoTests : XCTestCase
+#import "ViewController.h"
+
+@interface TTTDemoTests : XCTestCase {
+    ViewController* testViewController;
+}
 
 @end
 
 @implementation TTTDemoTests
 
-- (void)setUp
+-(void)setUp
 {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    testViewController = [storyboard instantiateInitialViewController];
 }
 
-- (void)tearDown
+
+# pragma mark Test state after initialization
+
+-(void)testViewControllerHasAView
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+    XCTAssertNotNil([testViewController view], @"Should have a view.");
 }
 
-- (void)testExample
+-(void)testViewControllerHasNineButtons
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSArray* subviews = [testViewController.view subviews];
+    NSIndexSet* buttonSubviewIndexes = [subviews indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return [obj isMemberOfClass:[UIButton class]];
+    }];
+    
+    XCTAssertEqual([buttonSubviewIndexes count], (NSUInteger) 9, @"There should be 9 buttons.");
+}
+
+-(void)testAllNineButtonsAreEmpty
+{
+    NSArray* subviews = [testViewController.view subviews];
+    NSIndexSet* buttonSubviewIndexes = [subviews indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return [obj isMemberOfClass:[UIButton class]];
+    }];
+    
+    [buttonSubviewIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+        UIButton* buttonAtIdx = [subviews objectAtIndex:idx];
+        XCTAssertNil([[buttonAtIdx titleLabel] text], @"Button at index %d should be empty.", idx);
+    }];
 }
 
 @end
