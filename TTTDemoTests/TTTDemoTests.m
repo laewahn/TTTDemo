@@ -41,7 +41,7 @@
 -(void)testAllNineButtonsAreEmpty
 {
     for (UIButton* aButton in [self buttonsInView:[testViewController view]]) {
-        XCTAssertEqualObjects([[aButton titleLabel] text], @"-", @"Button label should show -.");
+        XCTAssertEqualObjects([aButton titleForState:UIControlStateNormal], @"-", @"Button at label should show -.");
     }
 }
 
