@@ -76,6 +76,20 @@
     XCTAssertEqualObjects([[otherButton titleLabel] text], @"O", @"The other button should now show an O.");
 }
 
+-(void)testThirdButtonPressedShowsAnXAgain
+{
+    NSArray* buttons = [self buttonsInView:[testViewController view]];
+    
+    [testViewController gameButtonPressed:[buttons firstObject]];
+    [testViewController gameButtonPressed:[buttons objectAtIndex:1]];
+    
+    UIButton* lastButton = [buttons lastObject];
+    [testViewController gameButtonPressed:lastButton];
+
+    XCTAssertEqualObjects([[lastButton titleLabel] text], @"X", @"The last button should now show an X again.");
+}
+
+
 # pragma mark Helpers
 
 -(NSArray* )buttonsInView:(UIView *)aView

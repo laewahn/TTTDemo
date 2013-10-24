@@ -33,11 +33,11 @@
     
     if (xHasTurn) {
         [theButton setTitle:@"X" forState:UIControlStateNormal];
-        xHasTurn = NO;
     } else {
         [theButton setTitle:@"O" forState:UIControlStateNormal];;
     }
     
+    xHasTurn = !xHasTurn;
 }
 
 @end
