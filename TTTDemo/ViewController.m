@@ -8,7 +8,9 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () {
+    BOOL xHasTurn;
+}
 
 @end
 
@@ -28,7 +30,14 @@
 
 - (IBAction)gameButtonPressed:(id)sender {
     UIButton* theButton = (UIButton *)sender;
-    [[theButton titleLabel] setText:@"X"];
+    
+    if (xHasTurn) {
+        [theButton setTitle:@"X" forState:UIControlStateNormal];
+        xHasTurn = NO;
+    } else {
+        [theButton setTitle:@"O" forState:UIControlStateNormal];;
+    }
+    
 }
 
 @end
