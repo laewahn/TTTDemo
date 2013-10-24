@@ -38,6 +38,7 @@
     }
     
     xHasTurn = !xHasTurn;
+    [theButton setEnabled:NO];
 }
 
 @end

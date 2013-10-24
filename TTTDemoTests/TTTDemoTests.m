@@ -89,6 +89,15 @@
     XCTAssertEqualObjects([[lastButton titleLabel] text], @"X", @"The last button should now show an X again.");
 }
 
+-(void)testButtonIsDisabledAfterBeingPressed
+{
+    NSArray* buttons = [self buttonsInView:[testViewController view]];
+    UIButton* anyButton = [buttons firstObject];
+    
+    [testViewController gameButtonPressed:anyButton];
+    XCTAssertFalse([anyButton isEnabled], @"Button should be disabled after being clicked.");
+}
+
 
 # pragma mark Helpers
 
