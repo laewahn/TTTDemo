@@ -42,6 +42,11 @@
     [theButton setTitle:[self.currentPlayer icon] forState:UIControlStateNormal];
     [theButton setEnabled:NO];
     
+    NSUInteger tag = [theButton tag];
+    NSUInteger row = tag / 10;
+    NSUInteger column = tag % 10;
+    [self.gameState player:[self currentPlayer] selectedRow:row column:column];
+    
     [self setCurrentPlayer:[self.players objectAtIndex:(++currentPlayerIndex) % 2]];
     [self updateStateLabel];
 }

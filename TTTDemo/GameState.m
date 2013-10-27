@@ -10,4 +10,9 @@
 
 @implementation GameState
 
+-(void)player:(Player *)aPlayer selectedRow:(NSUInteger)aRow column:(NSUInteger)aCol
+{
+    
+}
+
 @end

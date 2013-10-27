@@ -10,6 +10,8 @@
 #import <OCMock/OCMock.h>
 
 #import "ViewController.h"
+#import "Player.h"
+#import "GameState.h"
 
 @interface TTTDemoTests : XCTestCase {
     ViewController* testViewController;
@@ -211,6 +213,25 @@
 -(void)testAppHasSomeKindOfGameState
 {
     XCTAssertNotNil([testViewController gameState], @"There should be a game state.");
+}
+
+
+# pragma mark Interaction tests
+
+-(void)testAppCallsGameStateAfterButtonPressAndTellsRownAndColumnThatWereSelectedAlongWithCurrentPlayersIcon
+{
+    Player* testPlayer = [[Player alloc] init];
+    [testViewController setCurrentPlayer:testPlayer];
+    
+    id gameStateMock = [OCMockObject mockForClass:[GameState class]];
+    [[gameStateMock expect] player:testPlayer selectedRow:1 column:2];
+    [testViewController setGameState:gameStateMock];
+    
+    UIButton* anyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [anyButton setTag:12];
+    [testViewController gameButtonPressed:anyButton];
+    
+    [gameStateMock verify];
 }
 
 @end

@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class Player;
+
 @interface GameState : NSObject
+
+-(void)player:(Player *)aPlayer selectedRow:(NSUInteger)aRow column:(NSUInteger)aCol;
 
 @end
