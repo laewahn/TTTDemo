@@ -25,6 +25,7 @@
 		956F4318181D2A3E00AE99AE /* PlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 956F4317181D2A3E00AE99AE /* PlayerTests.m */; };
 		956F431B181D379B00AE99AE /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 956F431A181D379B00AE99AE /* GameState.m */; };
 		956F431D181D37A800AE99AE /* GameStateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 956F431C181D37A800AE99AE /* GameStateTests.m */; };
+		956F431F181D3D6300AE99AE /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 956F431E181D3D6300AE99AE /* libOCMock.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		956F4319181D379B00AE99AE /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		956F431A181D379B00AE99AE /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		956F431C181D37A800AE99AE /* GameStateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStateTests.m; sourceTree = "<group>"; };
+		956F431E181D3D6300AE99AE /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = usr/lib/libOCMock.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95661C8F1818EAA100CCD6A5 /* XCTest.framework in Frameworks */,
+				956F431F181D3D6300AE99AE /* libOCMock.a in Frameworks */,
 				95661C911818EAA100CCD6A5 /* UIKit.framework in Frameworks */,
 				95661C901818EAA100CCD6A5 /* Foundation.framework in Frameworks */,
 			);
@@ -111,6 +114,7 @@
 		95661C6E1818EAA100CCD6A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				956F431E181D3D6300AE99AE /* libOCMock.a */,
 				95661C6F1818EAA100CCD6A5 /* Foundation.framework */,
 				95661C711818EAA100CCD6A5 /* CoreGraphics.framework */,
 				95661C731818EAA100CCD6A5 /* UIKit.framework */,
@@ -398,10 +402,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/usr/lib\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TTTDemo/TTTDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/usr/include\"",
+				);
 				INFOPLIST_FILE = "TTTDemo/TTTDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -411,10 +422,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/usr/lib\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TTTDemo/TTTDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/usr/include\"",
+				);
 				INFOPLIST_FILE = "TTTDemo/TTTDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -435,7 +453,24 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/usr/include\"",
+				);
 				INFOPLIST_FILE = "TTTDemoTests/TTTDemoTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/usr/lib\"",
+					"/Users/dennis/Desktop/Unit\\ Testing\\ Talk/Demo/TTTDemo/usr/lib",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+					"-force_load",
+					"\"$(SRCROOT)/usr/lib/libOCMock.a\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -454,7 +489,24 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TTTDemo/TTTDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/usr/include\"",
+				);
 				INFOPLIST_FILE = "TTTDemoTests/TTTDemoTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/usr/lib\"",
+					"/Users/dennis/Desktop/Unit\\ Testing\\ Talk/Demo/TTTDemo/usr/lib",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+					"-force_load",
+					"\"$(SRCROOT)/usr/lib/libOCMock.a\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

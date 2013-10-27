@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
 
 #import "ViewController.h"
 
@@ -25,6 +26,23 @@
     [testViewController view];
 }
 
+-(void)testOCMockWorks
+{
+    // To include OCMock:
+    // In TTTDemoTests target set:
+    //      Library search paths:   "$(SRCROOT)/usr/lib"
+    //      Header search paths:    "$(SRCROOT)/usr/include"
+    //      Other Linker flags:     -force_load "$(SRCROOT)/usr/lib/libOCMock.a"
+    //                              -ObjC
+    // Also do not forget to link test target agains libOCMock.a in build phases.
+    
+    id ocMockMock = [OCMockObject mockForClass:[NSString class]];
+    [[[ocMockMock expect] andReturn:@"Hi, I'm the mock!"] uppercaseString];
+    
+    NSLog(@"A mock presenting himself: %@", [ocMockMock uppercaseString]);
+    
+    [ocMockMock verify];
+}
 
 # pragma mark -
 # pragma mark Release 1
