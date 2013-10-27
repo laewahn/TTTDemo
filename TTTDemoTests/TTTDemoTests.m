@@ -22,6 +22,7 @@
 {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     testViewController = [storyboard instantiateInitialViewController];
+    [testViewController view];
 }
 
 
@@ -128,13 +129,11 @@
 
 -(void)testViewControllerHasAStateLabelAfterTheViewWasLoaded
 {
-    [testViewController loadView];
     XCTAssertNotNil([testViewController gameStateLabel], @"The view should have a label for the game state.");
 }
 
 -(void)testStatusLabelShowsFirstPlayersTurnAfterInitialization
 {
-    [testViewController view];
     XCTAssertEqualObjects([[testViewController gameStateLabel] text], @"Player 1, it's your turn!", @"Label should indicate that it's players1's turn.");
 }
 
@@ -150,14 +149,13 @@
 
 -(void)testViewControllerHasTwoPlayersAfterBeingLoaded
 {
-    [testViewController view];
+
     XCTAssertNotNil([testViewController players], @"The players array should have been initialized.");
     XCTAssertEqual([testViewController.players count], (NSUInteger) 2, @"There should be two players.");
 }
 
 -(void)testCurrentPlayerIsFirstPlayerAfterInitialization
 {
-    [testViewController view];
     XCTAssertEqualObjects([testViewController currentPlayer], [testViewController.players firstObject], @"The first turn should go to player 1.");
 }
 
