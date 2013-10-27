@@ -24,6 +24,8 @@
 {
     [super viewDidLoad];
     
+    [self.resetButton setEnabled:NO];
+    
     [self setGameState:[[GameState alloc] init]];
     [self.gameState setDelegate:self];
     
@@ -53,6 +55,13 @@
     
     [self setCurrentPlayer:[self.players objectAtIndex:(++currentPlayerIndex) % 2]];
     [self updateStateLabel];
+    
+    [self.resetButton setEnabled:YES];
+}
+
+- (IBAction)resetButtonPressed:(id)sender
+{
+    [self.gameState reset];
 }
 
 -(void)updateStateLabel

@@ -14,8 +14,10 @@
 @interface ViewController : UIViewController<GameStateDelegate>
 
 - (IBAction)gameButtonPressed:(id)sender;
+- (IBAction)resetButtonPressed:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *gameStateLabel;
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
 
 @property (strong, nonatomic) GameState* gameState;
 @property (strong, nonatomic) Player* currentPlayer;

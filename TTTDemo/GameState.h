@@ -20,6 +20,8 @@
 -(void)player:(Player *)aPlayer selectedRow:(NSUInteger)aRow column:(NSUInteger)aCol;
 -(void)checkForWinner;
 
+-(void)reset;
+
 @property(nonatomic, strong) NSArray* fieldArray;
 @property(nonatomic, weak) id<GameStateDelegate> delegate;
 

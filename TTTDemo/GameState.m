@@ -30,6 +30,11 @@
     [self fieldArray][aRow][aCol] = aPlayer;
 }
 
+-(void)reset
+{
+    
+}
+
 -(void)checkForWinner
 {
     id winner = nil;

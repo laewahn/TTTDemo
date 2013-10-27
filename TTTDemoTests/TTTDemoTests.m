@@ -302,4 +302,46 @@
     XCTAssertEqualObjects([testViewController.gameStateLabel text], @"Player 1 won the game!", @"Player 1 should have won.");
 }
 
+
+# pragma mark -
+# pragma mark Release 4
+
+# pragma mark Initialization tests
+
+-(void)testViewHasResetButton
+{
+    XCTAssertNotNil([testViewController resetButton], @"Should have a reset button.");
+    UIButton* resetButton = [testViewController resetButton];
+    XCTAssertEqualObjects([resetButton.titleLabel text] , @"Reset", @"The button should say 'Reset'");
+}
+
+-(void)testResetButtonIsConnectedToResetAction
+{
+    XCTAssertTrue([[testViewController.resetButton actionsForTarget:testViewController forControlEvent:UIControlEventTouchUpInside] containsObject:@"resetButtonPressed:"], @"Reset button should call the respective method on the view controller.");
+}
+
+
+# pragma mark Interaction tests
+
+-(void)testResetButtonShouldOnlyBeEnabledAfterTheFirstTurn
+{
+    UIButton* resetButton = [testViewController resetButton];
+    XCTAssertFalse([resetButton isEnabled], @"Reset should not be possible before the first turn.");
+    
+    UIButton* anyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [testViewController gameButtonPressed:anyButton];
+    XCTAssertTrue([resetButton isEnabled], @"Now you are allowed to press reset.");
+}
+
+-(void)testPressingResetButtonCallsResetOnTheGameState
+{
+    id gameStateMock = [OCMockObject mockForClass:[GameState class]];
+    [[gameStateMock expect] reset];
+    [testViewController setGameState:gameStateMock];
+    
+    [testViewController resetButtonPressed:nil];
+    
+    [gameStateMock verify];
+}
+
 @end
