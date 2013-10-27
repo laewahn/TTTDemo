@@ -56,4 +56,12 @@
     [self.gameStateLabel setText:[NSString stringWithFormat:@"%@, it's your turn!", [self.currentPlayer name]]];
 }
 
+
+# pragma mark GameStateDelegate implementation
+
+-(void)playerWonTheGame:(Player *)aPlayer
+{
+    [self.gameStateLabel setText:[NSString stringWithFormat:@"%@ won the game!", [aPlayer name]]];
+}
+
 @end

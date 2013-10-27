@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameState.h"
 
 @class Player;
-@class GameState;
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<GameStateDelegate>
 
 - (IBAction)gameButtonPressed:(id)sender;
 

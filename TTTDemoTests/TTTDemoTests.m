@@ -225,7 +225,7 @@
     Player* testPlayer = [[Player alloc] init];
     [testViewController setCurrentPlayer:testPlayer];
     
-    id gameStateMock = [OCMockObject mockForClass:[GameState class]];
+    id gameStateMock = [OCMockObject niceMockForClass:[GameState class]];
     [[gameStateMock expect] player:testPlayer selectedRow:1 column:2];
     [testViewController setGameState:gameStateMock];
     
@@ -241,7 +241,7 @@
     Player* testPlayer = [[Player alloc] init];
     [testViewController setCurrentPlayer:testPlayer];
     
-    id gameStateMock = [OCMockObject mockForClass:[GameState class]];
+    id gameStateMock = [OCMockObject niceMockForClass:[GameState class]];
     [[gameStateMock expect] player:testPlayer selectedRow:0 column:0];
     [testViewController setGameState:gameStateMock];
     
@@ -261,6 +261,17 @@
     [testViewController gameButtonPressed:nil];
 
     [gameStateMock verify];
+}
+
+
+# pragma mark GameStateDelegate method tests
+
+-(void)testWinnerIsShownInGameStateLabel
+{
+    Player* testPlayer = [[Player alloc] initWithName:@"Foo" icon:@"bar"];
+    [testViewController playerWonTheGame:testPlayer];
+    
+    XCTAssertEqualObjects([testViewController.gameStateLabel text], @"Foo won the game!", @"Label should praise the winner of the game.");
 }
 
 @end

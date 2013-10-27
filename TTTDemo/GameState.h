@@ -10,6 +10,11 @@
 
 @class Player;
 
+@protocol GameStateDelegate <NSObject>
+-(void)playerWonTheGame:(Player *)aPlayer;
+@end
+
+
 @interface GameState : NSObject
 
 -(void)player:(Player *)aPlayer selectedRow:(NSUInteger)aRow column:(NSUInteger)aCol;
