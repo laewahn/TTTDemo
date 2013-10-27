@@ -20,4 +20,6 @@
 -(void)player:(Player *)aPlayer selectedRow:(NSUInteger)aRow column:(NSUInteger)aCol;
 -(void)checkForWinner;
 
+@property(nonatomic, strong) NSArray* fieldArray;
+
 @end
