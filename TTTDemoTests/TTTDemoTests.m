@@ -215,10 +215,12 @@
     XCTAssertNotNil([testViewController gameState], @"There should be a game state.");
 }
 
+// We could also test that the buttons have the correct tag...
+
 
 # pragma mark Interaction tests
 
--(void)testAppCallsGameStateAfterButtonPressAndTellsRownAndColumnThatWereSelectedAlongWithCurrentPlayersIcon
+-(void)testAppCallsGameStateAfterButtonPressAndTellsRownAndColumnThatWereSelectedAlongWithCurrentPlayer
 {
     Player* testPlayer = [[Player alloc] init];
     [testViewController setCurrentPlayer:testPlayer];
@@ -231,6 +233,33 @@
     [anyButton setTag:12];
     [testViewController gameButtonPressed:anyButton];
     
+    [gameStateMock verify];
+}
+
+-(void)testGameStateUpdateWithVeryFirstButton
+{
+    Player* testPlayer = [[Player alloc] init];
+    [testViewController setCurrentPlayer:testPlayer];
+    
+    id gameStateMock = [OCMockObject mockForClass:[GameState class]];
+    [[gameStateMock expect] player:testPlayer selectedRow:0 column:0];
+    [testViewController setGameState:gameStateMock];
+    
+    UIButton* anyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [anyButton setTag:0];
+    [testViewController gameButtonPressed:anyButton];
+    
+    [gameStateMock verify];
+}
+
+-(void)testGameStateChecksForAWinnerWhenAButtonIsPressed
+{
+    id gameStateMock = [OCMockObject niceMockForClass:[GameState class]];
+    [[gameStateMock expect] checkForWinner];
+    [testViewController setGameState:gameStateMock];
+    
+    [testViewController gameButtonPressed:nil];
+
     [gameStateMock verify];
 }
 

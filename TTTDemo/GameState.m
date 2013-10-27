@@ -12,6 +12,11 @@
 
 -(void)player:(Player *)aPlayer selectedRow:(NSUInteger)aRow column:(NSUInteger)aCol
 {
+   
+}
+
+-(void)checkForWinner
+{
     
 }
 
