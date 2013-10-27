@@ -21,5 +21,6 @@
 -(void)checkForWinner;
 
 @property(nonatomic, strong) NSArray* fieldArray;
+@property(nonatomic, weak) id<GameStateDelegate> delegate;
 
 @end

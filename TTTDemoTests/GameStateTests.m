@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
 
 #import "GameState.h"
 #import "Player.h"
@@ -49,4 +50,113 @@
     [testState player:testPlayer selectedRow:0 column:0];
     XCTAssertEqualObjects(field[1][2], testPlayer, @"The player should have been set.");
 }
+
+-(void)testCheckForWinnerCallDelegateIfThereIsAWinnerInARow
+{
+    Player* testPlayer = [[Player alloc] init];
+    NSArray* stubField = @[@[testPlayer, testPlayer, testPlayer],
+                           @[[NSNull null], [NSNull null], [NSNull null]],
+                           @[[NSNull null], [NSNull null], [NSNull null]]
+                           ];
+    [testState setFieldArray:stubField];
+    
+    id delegateMock = [OCMockObject mockForProtocol:@protocol(GameStateDelegate)];
+    [[delegateMock expect] playerWonTheGame:testPlayer];
+    [testState setDelegate:delegateMock];
+    
+    [testState checkForWinner];
+    
+    [delegateMock verify];
+}
+
+-(void)testCheckForWinnerCallDelegateIfThereIsAWinnerInAnotherRow
+{
+    Player* testPlayer = [[Player alloc] init];
+    NSArray* stubField = @[@[[NSNull null], [NSNull null], [NSNull null]],
+                           @[testPlayer, testPlayer, testPlayer],
+                           @[[NSNull null], [NSNull null], [NSNull null]]
+                           ];
+    [testState setFieldArray:stubField];
+    
+    id delegateMock = [OCMockObject mockForProtocol:@protocol(GameStateDelegate)];
+    [[delegateMock expect] playerWonTheGame:testPlayer];
+    [testState setDelegate:delegateMock];
+    
+    [testState checkForWinner];
+    
+    [delegateMock verify];
+}
+
+-(void)testCheckForWinnerCallDelegateIfThereIsAWinnerInAColumn
+{
+    Player* testPlayer = [[Player alloc] init];
+    NSArray* stubField = @[@[[NSNull null], testPlayer, testPlayer],
+                           @[[NSNull null], testPlayer, [NSNull null]],
+                           @[[NSNull null], testPlayer, [NSNull null]]
+                           ];
+    [testState setFieldArray:stubField];
+    
+    id delegateMock = [OCMockObject mockForProtocol:@protocol(GameStateDelegate)];
+    [[delegateMock expect] playerWonTheGame:testPlayer];
+    [testState setDelegate:delegateMock];
+    
+    [testState checkForWinner];
+    
+    [delegateMock verify];
+}
+
+-(void)testCheckForWinnerCallDelegateIfThereIsAWinnerInAnotherColumn
+{
+    Player* testPlayer = [[Player alloc] init];
+    NSArray* stubField = @[@[testPlayer, [NSNull null], testPlayer],
+                           @[testPlayer, [NSNull null], [NSNull null]],
+                           @[testPlayer, [NSNull null], [NSNull null]]
+                           ];
+    [testState setFieldArray:stubField];
+    
+    id delegateMock = [OCMockObject mockForProtocol:@protocol(GameStateDelegate)];
+    [[delegateMock expect] playerWonTheGame:testPlayer];
+    [testState setDelegate:delegateMock];
+    
+    [testState checkForWinner];
+    
+    [delegateMock verify];
+}
+
+-(void)testCheckForWinnerCallDelegateIfThereIsAWinnerDiagonally
+{
+    Player* testPlayer = [[Player alloc] init];
+    NSArray* stubField = @[@[testPlayer, [NSNull null], testPlayer],
+                           @[[NSNull null], testPlayer, [NSNull null]],
+                           @[[NSNull null], [NSNull null], testPlayer]
+                           ];
+    [testState setFieldArray:stubField];
+    
+    id delegateMock = [OCMockObject mockForProtocol:@protocol(GameStateDelegate)];
+    [[delegateMock expect] playerWonTheGame:testPlayer];
+    [testState setDelegate:delegateMock];
+    
+    [testState checkForWinner];
+    
+    [delegateMock verify];
+}
+
+-(void)testCheckForWinnerCallDelegateIfThereIsAWinnerDiagonallyTheOtherWay
+{
+    Player* testPlayer = [[Player alloc] init];
+    NSArray* stubField = @[@[testPlayer, [NSNull null], testPlayer],
+                           @[[NSNull null], testPlayer, [NSNull null]],
+                           @[testPlayer, [NSNull null], [NSNull null]]
+                           ];
+    [testState setFieldArray:stubField];
+    
+    id delegateMock = [OCMockObject mockForProtocol:@protocol(GameStateDelegate)];
+    [[delegateMock expect] playerWonTheGame:testPlayer];
+    [testState setDelegate:delegateMock];
+    
+    [testState checkForWinner];
+    
+    [delegateMock verify];
+}
+
 @end
