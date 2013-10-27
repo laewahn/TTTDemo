@@ -11,7 +11,6 @@
 #import "Player.h"
 
 @interface ViewController () {
-    BOOL xHasTurn;
     NSInteger currentPlayerIndex;
 }
 
@@ -22,32 +21,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    xHasTurn = YES;
-    currentPlayerIndex = 0;
     
+    currentPlayerIndex = 0;
     NSArray* thePlayers = @[
                             [[Player alloc] initWithName:@"Player 1" icon:@"X"],
                             [[Player alloc] initWithName:@"Player 2" icon:@"O"]
                             ];
+    
     [self setPlayers:thePlayers];
     [self setCurrentPlayer:[thePlayers firstObject]];
     [self updateStateLabel];
 }
 
 - (IBAction)gameButtonPressed:(id)sender {
-    UIButton* theButton = (UIButton *)sender;
     
-    if (xHasTurn) {
-        [theButton setTitle:@"X" forState:UIControlStateNormal];
-    } else {
-        [theButton setTitle:@"O" forState:UIControlStateNormal];;
-    }
+    UIButton* theButton = (UIButton *)sender;
+    [theButton setTitle:[self.currentPlayer icon] forState:UIControlStateNormal];
+    [theButton setEnabled:NO];
     
     [self setCurrentPlayer:[self.players objectAtIndex:(++currentPlayerIndex) % 2]];
     [self updateStateLabel];
-
-    xHasTurn = !xHasTurn;
-    [theButton setEnabled:NO];
 }
 
 -(void)updateStateLabel
