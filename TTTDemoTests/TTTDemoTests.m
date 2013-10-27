@@ -138,4 +138,27 @@
     XCTAssertEqualObjects([[testViewController gameStateLabel] text], @"Player 1, it's your turn!", @"Label should indicate that it's players1's turn.");
 }
 
+-(void)testViewControllerHasCurrentPlayer
+{
+    XCTAssertNoThrow([testViewController currentPlayer], @"There should be a current player property.");
+}
+
+-(void)testViewControllerHasArrayOfAllPlayers
+{
+    XCTAssertNoThrow([testViewController players], @"There should be an array with all the players.");
+}
+
+-(void)testViewControllerHasTwoPlayersAfterBeingLoaded
+{
+    [testViewController view];
+    XCTAssertNotNil([testViewController players], @"The players array should have been initialized.");
+    XCTAssertEqual([testViewController.players count], (NSUInteger) 2, @"There should be two players.");
+}
+
+-(void)testCurrentPlayerIsFirstPlayerAfterInitialization
+{
+    [testViewController view];
+    XCTAssertEqualObjects([testViewController currentPlayer], [testViewController.players firstObject], @"The first turn should go to player 1.");
+}
+
 @end

@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import "Player.h"
+
 @interface ViewController () {
     BOOL xHasTurn;
 }
@@ -20,13 +22,15 @@
 {
     [super viewDidLoad];
     xHasTurn = YES;
-    [self.gameStateLabel setText:@"Player 1, it's your turn!"];
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSArray* thePlayers = @[
+                            [[Player alloc] initWithName:@"Player 1" icon:@"X"],
+                            [[Player alloc] initWithName:@"Player 2" icon:@"O"]
+                            ];
+    [self setPlayers:thePlayers];
+    [self setCurrentPlayer:[thePlayers firstObject]];
+    
+    [self.gameStateLabel setText:[NSString stringWithFormat:@"%@, it's your turn!", [self.currentPlayer name]]];
 }
 
 - (IBAction)gameButtonPressed:(id)sender {
