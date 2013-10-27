@@ -25,6 +25,9 @@
 }
 
 
+# pragma mark -
+# pragma mark Release 1
+
 # pragma mark Test state after initialization
 
 -(void)testViewControllerHasAView
@@ -115,6 +118,24 @@
     }];
     
     return buttonSubviewIndexes;
+}
+
+
+# pragma mark -
+# pragma mark Release 2
+
+# pragma mark Test state after initialization
+
+-(void)testViewControllerHasAStateLabelAfterTheViewWasLoaded
+{
+    [testViewController loadView];
+    XCTAssertNotNil([testViewController gameStateLabel], @"The view should have a label for the game state.");
+}
+
+-(void)testStatusLabelShowsFirstPlayersTurnAfterInitialization
+{
+    [testViewController view];
+    XCTAssertEqualObjects([[testViewController gameStateLabel] text], @"Player 1, it's your turn!", @"Label should indicate that it's players1's turn.");
 }
 
 @end

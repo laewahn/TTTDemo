@@ -12,4 +12,6 @@
 
 - (IBAction)gameButtonPressed:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *gameStateLabel;
+
 @end

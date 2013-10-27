@@ -20,6 +20,7 @@
 {
     [super viewDidLoad];
     xHasTurn = YES;
+    [self.gameStateLabel setText:@"Player 1, it's your turn!"];
 }
 
 - (void)didReceiveMemoryWarning
