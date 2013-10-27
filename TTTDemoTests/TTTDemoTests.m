@@ -215,6 +215,11 @@
     XCTAssertNotNil([testViewController gameState], @"There should be a game state.");
 }
 
+-(void)testViewControllerIsDelegateOfGameState
+{
+    XCTAssertEqualObjects([testViewController.gameState delegate], testViewController, @"The ViewController should be the delegate of the game state.");
+}
+
 // We could also test that the buttons have the correct tag...
 
 
@@ -272,6 +277,29 @@
     [testViewController playerWonTheGame:testPlayer];
     
     XCTAssertEqualObjects([testViewController.gameStateLabel text], @"Foo won the game!", @"Label should praise the winner of the game.");
+}
+
+
+# pragma mark Full game test
+
+-(void)testAWholeRoundOfTTT
+{
+    UIButton* buttonPressed = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    NSArray* turnTags = @[@0, @10, @1, @20, @2];
+    NSArray* expectedIconsOnTurn = @[@"X",@"O",@"X",@"O",@"X"];
+
+    NSDictionary* turns = [NSDictionary dictionaryWithObjects:expectedIconsOnTurn forKeys:turnTags];
+    
+    for (NSNumber* turnTag in turnTags) {
+        [buttonPressed setTag:[turnTag integerValue]];
+        [testViewController gameButtonPressed:buttonPressed];
+        
+        XCTAssertEqualObjects([buttonPressed.titleLabel text], [turns objectForKey:turnTag], @"Should be X");
+        XCTAssertFalse([buttonPressed isEnabled], @"Should be disabled.");
+    }
+    
+    XCTAssertEqualObjects([testViewController.gameStateLabel text], @"Player 1 won the game!", @"Player 1 should have won.");
 }
 
 @end

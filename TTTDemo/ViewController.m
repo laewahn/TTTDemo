@@ -13,6 +13,7 @@
 
 @interface ViewController () {
     NSInteger currentPlayerIndex;
+    BOOL gameWon;
 }
 
 @end
@@ -24,8 +25,11 @@
     [super viewDidLoad];
     
     [self setGameState:[[GameState alloc] init]];
+    [self.gameState setDelegate:self];
     
     currentPlayerIndex = 0;
+    gameWon = 0;
+    
     NSArray* thePlayers = @[
                             [[Player alloc] initWithName:@"Player 1" icon:@"X"],
                             [[Player alloc] initWithName:@"Player 2" icon:@"O"]
@@ -53,7 +57,9 @@
 
 -(void)updateStateLabel
 {
-    [self.gameStateLabel setText:[NSString stringWithFormat:@"%@, it's your turn!", [self.currentPlayer name]]];
+    if (!gameWon) {
+        [self.gameStateLabel setText:[NSString stringWithFormat:@"%@, it's your turn!", [self.currentPlayer name]]];
+    }
 }
 
 
@@ -62,6 +68,7 @@
 -(void)playerWonTheGame:(Player *)aPlayer
 {
     [self.gameStateLabel setText:[NSString stringWithFormat:@"%@ won the game!", [aPlayer name]]];
+    gameWon = YES;
 }
 
 @end
