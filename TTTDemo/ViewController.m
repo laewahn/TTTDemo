@@ -12,6 +12,7 @@
 
 @interface ViewController () {
     BOOL xHasTurn;
+    NSInteger currentPlayerIndex;
 }
 
 @end
@@ -22,15 +23,15 @@
 {
     [super viewDidLoad];
     xHasTurn = YES;
-
+    currentPlayerIndex = 0;
+    
     NSArray* thePlayers = @[
                             [[Player alloc] initWithName:@"Player 1" icon:@"X"],
                             [[Player alloc] initWithName:@"Player 2" icon:@"O"]
                             ];
     [self setPlayers:thePlayers];
     [self setCurrentPlayer:[thePlayers firstObject]];
-    
-    [self.gameStateLabel setText:[NSString stringWithFormat:@"%@, it's your turn!", [self.currentPlayer name]]];
+    [self updateStateLabel];
 }
 
 - (IBAction)gameButtonPressed:(id)sender {
@@ -42,8 +43,16 @@
         [theButton setTitle:@"O" forState:UIControlStateNormal];;
     }
     
+    [self setCurrentPlayer:[self.players objectAtIndex:(++currentPlayerIndex) % 2]];
+    [self updateStateLabel];
+
     xHasTurn = !xHasTurn;
     [theButton setEnabled:NO];
+}
+
+-(void)updateStateLabel
+{
+    [self.gameStateLabel setText:[NSString stringWithFormat:@"%@, it's your turn!", [self.currentPlayer name]]];
 }
 
 @end

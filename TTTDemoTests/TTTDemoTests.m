@@ -159,4 +159,29 @@
     XCTAssertEqualObjects([testViewController currentPlayer], [testViewController.players firstObject], @"The first turn should go to player 1.");
 }
 
+
+# pragma mark Interaction tests
+
+-(void)testPlayerSwitchesAfterEveryButtonPress
+{
+    UIButton* anyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [testViewController gameButtonPressed:anyButton];
+    
+    XCTAssertEqualObjects([testViewController currentPlayer], [testViewController.players lastObject], @"It should be the secont players turn.");
+    XCTAssertNoThrow([testViewController gameButtonPressed:anyButton], @"Next turn should not crash.");
+    
+    XCTAssertEqualObjects([testViewController currentPlayer], [testViewController.players firstObject], @"Not it should be the first players turn again.");
+}
+
+-(void)testLabelIsUpdatedAfterEveryTurn
+{
+    UIButton* anyButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [testViewController gameButtonPressed:anyButton];
+    
+    XCTAssertEqualObjects([testViewController.gameStateLabel text], @"Player 2, it's your turn!", @"Label should have been updated.");
+    
+    [testViewController gameButtonPressed:anyButton];
+    XCTAssertEqualObjects([testViewController.gameStateLabel text], @"Player 1, it's your turn!", @"Label should have been updated.");
+}
+
 @end
