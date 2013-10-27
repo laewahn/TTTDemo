@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 #import "Player.h"
+#import "GameState.h"
 
 @interface ViewController () {
     NSInteger currentPlayerIndex;
@@ -21,6 +22,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setGameState:[[GameState alloc] init]];
     
     currentPlayerIndex = 0;
     NSArray* thePlayers = @[

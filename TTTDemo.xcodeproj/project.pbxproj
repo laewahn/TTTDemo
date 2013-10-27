@@ -23,6 +23,8 @@
 		95661C9B1818EAA100CCD6A5 /* TTTDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95661C9A1818EAA100CCD6A5 /* TTTDemoTests.m */; };
 		956F4316181D2A2C00AE99AE /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 956F4315181D2A2C00AE99AE /* Player.m */; };
 		956F4318181D2A3E00AE99AE /* PlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 956F4317181D2A3E00AE99AE /* PlayerTests.m */; };
+		956F431B181D379B00AE99AE /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 956F431A181D379B00AE99AE /* GameState.m */; };
+		956F431D181D37A800AE99AE /* GameStateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 956F431C181D37A800AE99AE /* GameStateTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,9 @@
 		956F4314181D2A2C00AE99AE /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = ../Player.h; sourceTree = "<group>"; };
 		956F4315181D2A2C00AE99AE /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = ../Player.m; sourceTree = "<group>"; };
 		956F4317181D2A3E00AE99AE /* PlayerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerTests.m; path = ../PlayerTests.m; sourceTree = "<group>"; };
+		956F4319181D379B00AE99AE /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
+		956F431A181D379B00AE99AE /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
+		956F431C181D37A800AE99AE /* GameStateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStateTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				956F4314181D2A2C00AE99AE /* Player.h */,
+				956F4319181D379B00AE99AE /* GameState.h */,
+				956F431A181D379B00AE99AE /* GameState.m */,
 				956F4315181D2A2C00AE99AE /* Player.m */,
 				95661C7E1818EAA100CCD6A5 /* AppDelegate.h */,
 				95661C7F1818EAA100CCD6A5 /* AppDelegate.m */,
@@ -146,6 +153,7 @@
 			children = (
 				95661C9A1818EAA100CCD6A5 /* TTTDemoTests.m */,
 				956F4317181D2A3E00AE99AE /* PlayerTests.m */,
+				956F431C181D37A800AE99AE /* GameStateTests.m */,
 				95661C951818EAA100CCD6A5 /* Supporting Files */,
 			);
 			path = TTTDemoTests;
@@ -261,6 +269,7 @@
 				95661C861818EAA100CCD6A5 /* ViewController.m in Sources */,
 				95661C801818EAA100CCD6A5 /* AppDelegate.m in Sources */,
 				95661C7C1818EAA100CCD6A5 /* main.m in Sources */,
+				956F431B181D379B00AE99AE /* GameState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +279,7 @@
 			files = (
 				956F4318181D2A3E00AE99AE /* PlayerTests.m in Sources */,
 				95661C9B1818EAA100CCD6A5 /* TTTDemoTests.m in Sources */,
+				956F431D181D37A800AE99AE /* GameStateTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

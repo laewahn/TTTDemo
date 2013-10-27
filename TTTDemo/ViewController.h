@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class Player;
+@class GameState;
 
 @interface ViewController : UIViewController
 
@@ -16,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *gameStateLabel;
 
+@property (strong, nonatomic) GameState* gameState;
 @property (strong, nonatomic) Player* currentPlayer;
 @property (strong, nonatomic) NSArray* players;
 

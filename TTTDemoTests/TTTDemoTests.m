@@ -184,4 +184,15 @@
     XCTAssertEqualObjects([testViewController.gameStateLabel text], @"Player 1, it's your turn!", @"Label should have been updated.");
 }
 
+
+# pragma mark -
+# pragma mark Release 3
+
+# pragma mark Test state after initialization
+
+-(void)testAppHasSomeKindOfGameState
+{
+    XCTAssertNotNil([testViewController gameState], @"There should be a game state.");
+}
+
 @end
