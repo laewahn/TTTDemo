@@ -58,9 +58,9 @@
 		95661C961818EAA100CCD6A5 /* TTTDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TTTDemoTests-Info.plist"; sourceTree = "<group>"; };
 		95661C981818EAA100CCD6A5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		95661C9A1818EAA100CCD6A5 /* TTTDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTTDemoTests.m; sourceTree = "<group>"; };
-		956F4314181D2A2C00AE99AE /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = ../Player.h; sourceTree = "<group>"; };
-		956F4315181D2A2C00AE99AE /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = ../Player.m; sourceTree = "<group>"; };
-		956F4317181D2A3E00AE99AE /* PlayerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerTests.m; path = ../PlayerTests.m; sourceTree = "<group>"; };
+		956F4314181D2A2C00AE99AE /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		956F4315181D2A2C00AE99AE /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		956F4317181D2A3E00AE99AE /* PlayerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTests.m; sourceTree = "<group>"; };
 		956F4319181D379B00AE99AE /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		956F431A181D379B00AE99AE /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		956F431C181D37A800AE99AE /* GameStateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStateTests.m; sourceTree = "<group>"; };
@@ -126,9 +126,9 @@
 		95661C751818EAA100CCD6A5 /* TTTDemo */ = {
 			isa = PBXGroup;
 			children = (
-				956F4314181D2A2C00AE99AE /* Player.h */,
 				956F4319181D379B00AE99AE /* GameState.h */,
 				956F431A181D379B00AE99AE /* GameState.m */,
+				956F4314181D2A2C00AE99AE /* Player.h */,
 				956F4315181D2A2C00AE99AE /* Player.m */,
 				95661C7E1818EAA100CCD6A5 /* AppDelegate.h */,
 				95661C7F1818EAA100CCD6A5 /* AppDelegate.m */,
